@@ -1,0 +1,62 @@
+<resources>
+    <string name="app_name">QLNV</string>
+    <string name="hello_world">Hello world!</string>
+
+    <string name="menu_settings">Cài đặt</string>
+
+    <string name="title_activity_thiet_lap_truong_phong">ThietLapTruongPhongActivity</string>
+
+    <string name="title_activity_danh_sach_nhan_vien">DanhSachNhanVienActivity</string>
+
+    <string name="title_activity_them_nhan_vien">ThemNhanVienActivity</string>
+
+    <string name="title_activity_chuyen_phong_ban">ChuyenPhongBanActivity</string>
+    <string name="qlnv">Quản lý phòng ban</string>
+
+    <string name="welcome_back">Welcome back !</string>
+    <string name="login_to_continue">Login to continue</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Đăng nhập</string>
+    <string name="menu">MENU</string>
+    <string name="start_quiz">Chấm công</string>
+    <string name="assigntask">Giao công việc </string>
+    <string name="mytask">Công việc của bạn</string>
+    <string name="edit_password">Đổi mật khẩu</string>
+    <string name="logout">Đăng xuất</string>
+    <string name="manage_user">Quản lý nhân sự</string>
+    <string name="account">Tài khoản</string>
+    <string name="summary">Tổng kết</string>
+    <string name="autologin">Duy trì đăng nhập</string>
+    <string name="loading">Loading ...</string>
+    <string name="old_password">Mật khẩu cũ</string>
+    <string name="new_password">Mật khẩu mới</string>
+    <string name="confirm_new_password">Xác nhận  mật khẩu mới</string>
+    <string name="save_password">Lưu mật khẩu</string>
+    <string name="add_user">Thêm nhân viên</string>
+    <string name="edit_user">Sửa thông tin nhân viên</string>
+    <string name="view_all_task">Tất cả nhiệm vụ </string>
+    <string name="timekeepingSuccess">Chấm công thành công</string>
+    <string name="finish">Kết thúc</string>
+    <string name="success">Chấm công</string>
+    <string name="checkin">Bạn đã checked in thành công</string>
+    <string name="checkout">Bạn đã checked out thành công</string>
+    <string name="absent">Xin nghỉ phép</string>
+    <string name="time_absent">Thời gian nghỉ phép</string>
+    <string name="FromTime">Từ ngày</string>
+    <string name="ToTime">Đến ngày</string>
+    <string name="reason">Lý do</string>
+    <string name="enter_reason">Nhập lý do ...</string>
+    <string name="sendAbsent">Send</string>
+    <string name="back"><![CDATA[<-]]></string>
+    <string name="forward"><![CDATA[->]]></string>
+    <string name="empty_task_list">Danh sách nhiệm vụ trống</string>
+    <string name="update_status_task">Cập nhật  công việc</string>
+    <string name="list_file">Danh sách file đính kèm</string>
+    <string name="qlnvien">Danh sách nhân viên</string>
+
+    <string name="channel_name">Thay doi</string>
+    <string name="chanel_description">Mo ta</string>
+
+
+</resources>

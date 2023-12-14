@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+
+    <TextView
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:text="Task assignment "
+        android:textSize="20sp" />
+
+
+
+    <EditText
+        android:id="@+id/task_assigned_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:hint="Task name/details"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:paddingTop="5dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="8dp">
+        <TextView
+            android:textSize="15dp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Giờ kết thúc :" />
+
+        <TextView
+            android:padding="4dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/rounded_edittext"
+            android:id="@+id/tvHourEnd"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:paddingTop="5dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="8dp">
+        <TextView
+            android:textSize="15dp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Ngày kết thúc:" />
+
+        <TextView
+            android:padding="4dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/rounded_edittext"
+            android:id="@+id/tvDateEnd"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:paddingTop="5dp"
+        android:layout_marginLeft="8dp">
+        <TextView
+            android:textSize="15dp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Giao cho:" />
+
+        <Spinner
+            android:layout_marginLeft="40dp"
+            android:id="@+id/spinner1"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:paddingTop="5dp"
+        android:layout_marginLeft="8dp">
+        <TextView
+            android:textSize="15dp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Trạng thái:" />
+
+        <Spinner
+            android:layout_marginLeft="40dp"
+            android:id="@+id/spinner2"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown"/>
+
+    </LinearLayout>
+
+
+    <Button
+        android:layout_gravity="center"
+        android:id="@+id/task_assigned_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/task_assigned_name"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:background="@color/peach"
+        android:padding="10dp"
+        android:text="Update task" />
+
+</LinearLayout>

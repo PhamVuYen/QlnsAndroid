@@ -1,0 +1,123 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/layoutToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" >
+
+        <ImageView
+            android:padding="4dp"
+            android:id="@+id/btnback"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_back" />
+
+        <TextView
+            android:id="@+id/txtmsg"
+            android:paddingLeft="8dp"
+            android:textSize="18dp"
+            android:gravity="center_vertical"
+            android:text="@string/absent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/black" />
+
+    </LinearLayout>
+
+   <TextView
+       android:id="@+id/tvTittleTime"
+       android:layout_below="@+id/layoutToolbar"
+       android:layout_marginTop="10dp"
+       android:layout_marginLeft="8dp"
+       android:textSize="18dp"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="@string/time_absent"/>
+    
+    <RelativeLayout
+        android:id="@+id/layoutTime"
+        android:layout_below="@+id/tvTittleTime"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_alignParentLeft="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:text="@string/FromTime"/>
+            <TextView
+                android:gravity="center"
+                android:id="@+id/tvFromTime"
+                android:layout_marginTop="8dp"
+                android:layout_width="150dp"
+                android:layout_height="40dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:text="@string/ToTime"/>
+            <TextView
+                android:id="@+id/tvToTime"
+                android:gravity="center"
+                android:layout_marginTop="8dp"
+                android:layout_width="150dp"
+                android:layout_height="40dp"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_below="@id/layoutTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_below="@+id/layoutTime"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="8dp"
+            android:textSize="18dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/reason"/>
+
+        <EditText
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/edtReason"
+            android:hint="@string/enter_reason"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/tvConfirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/round_button"
+        android:text="@string/sendAbsent"
+        android:textColor="@android:color/white" />
+</RelativeLayout>

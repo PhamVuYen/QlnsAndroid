@@ -1,0 +1,65 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="8dp"
+        android:drawableStart="@drawable/ic_back"
+        android:background="@color/white"
+        android:drawablePadding="80dp"
+        android:text="Chọn trưởng phòng"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:clickable="true"
+        android:focusable="true"/>
+
+    <ListView
+        android:id="@+id/lvtruongphong"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="3" >
+
+    </ListView>
+
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="8dp"
+        android:background="#008000"
+        android:text="Chọn phó phòng"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp" />
+
+    <ListView
+        android:visibility="gone"
+        android:id="@+id/lvphophong"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="2" >
+    </ListView>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+        <TextView
+            android:padding="8dp"
+            android:textColor="@color/white"
+            android:id="@+id/imgapply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Thiết lập"
+            android:background="@drawable/round_button" />
+    </FrameLayout>
+</LinearLayout>

@@ -28,6 +28,8 @@ public class Employee  implements Serializable{
 	private String mucluong;
 	private String password;
 
+
+
 	public Employee(@NotNull String id, String name, Date dateOfbirth, String address, boolean sex, String phone, String email, String identified, String role, String idRoom, String stk, String mucluong) {
 		this.id = id;
 		this.name = name;

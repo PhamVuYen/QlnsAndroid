@@ -21,48 +21,49 @@ import java.util.Date;
 public class Injector {
     public static Employee employee;
     public static TimeKeeping timeKeeping;
-    public static String IP = "192.168.5.236";
-    public static String URL_CONNECT_SERVER = "http://" + IP + "/QLNS_V1/Connect.php";
-    public static String URL_USER = "http://" + IP + "/QLNS_V1/Staffs/getStaff.php";
+    public static String IP = "192.168.1.13";
+    public static String PORT = ":8080";
+    public static String URL_CONNECT_SERVER = "http://" + IP + PORT + "/QLNS_V1/Connect.php";
+    public static String URL_USER = "http://" + IP + PORT + "/QLNS_V1/Staffs/getStaff.php";
 
-    public static String URL_LOGIN = "https://" + IP + "/QLNS_V1/Login/responseLogin1.php";
-    public static String URL_QUERY_USER_ROOM = "http://" + IP + "/QLNS_V1/Staffs/getStaffsRoom.php";
-    public static String URL_ADD_USER = "http://" + IP + "/QLNS_V1/Staffs/addStaff.php";
-    public static String URL_DEL_USER = "http://" + IP + "/QLNS_V1/Staffs/delStaff.php";
-    public static String URL_EDIT_USER = "http://" + IP + "/QLNS_V1/Staffs/editStaff.php";
-    public static String URL_UPDATE_PASS = "http://" + IP + "/QLNS_V1/Staffs/updatePassword.php";
+    public static String URL_LOGIN = "http://" + IP + PORT + "/QLNS_V1/Login/responseLogin1.php";
+    public static String URL_QUERY_USER_ROOM = "http://" + IP +  PORT + "/QLNS_V1/Staffs/getStaffsRoom.php";
+    public static String URL_ADD_USER = "http://" + IP + PORT +"/QLNS_V1/Staffs/addStaff.php";
+    public static String URL_DEL_USER = "http://" + IP + PORT +"/QLNS_V1/Staffs/delStaff.php";
+    public static String URL_EDIT_USER = "http://" + IP + PORT +"/QLNS_V1/Staffs/editStaff.php";
+    public static String URL_UPDATE_PASS = "http://" + IP + PORT +"/QLNS_V1/Staffs/updatePassword.php";
 
-    public static String URL_UPDATE_CHANGE_ROOM =  "http://" + IP + "/QLNS_V1/Staffs/changeRoom.php";
+    public static String URL_UPDATE_CHANGE_ROOM =  "http://" + IP + PORT +"/QLNS_V1/Staffs/changeRoom.php";
 
-    public static String URL_ROOM = "http://" + IP + "/QLNS_V1/Departments/getPhongBan.php";
-    public static String URL_ADD_ROOM = "http://" + IP + "/QLNS_V1/Departments/addPhongBan.php";
-    public static String URL_DEL_ROOM = "http://" + IP + "/QLNS_V1/Departments/delPhongBan.php";
-    public static String URL_EDIT_ROOM = "http://" + IP + "/QLNS_V1/Departments/editPhongBan.php";
-    public static String URL_EDIT_LANHDAO = "http://" + IP + "/QLNS_V1/Staffs/setChucVu.php";
-    public static String URL_INSERT_LANHDAO = "http://" + IP + "/QLNS_V1/Staffs/bonhiemChucVu.php";
+    public static String URL_ROOM = "http://" + IP + PORT +"/QLNS_V1/Departments/getPhongBan.php";
+    public static String URL_ADD_ROOM = "http://" + IP + PORT +"/QLNS_V1/Departments/addPhongBan.php";
+    public static String URL_DEL_ROOM = "http://" + IP + PORT +"/QLNS_V1/Departments/delPhongBan.php";
+    public static String URL_EDIT_ROOM = "http://" + IP + PORT +"/QLNS_V1/Departments/editPhongBan.php";
+    public static String URL_EDIT_LANHDAO = "http://" + IP + PORT +"/QLNS_V1/Staffs/setChucVu.php";
+    public static String URL_INSERT_LANHDAO = "http://" + IP + PORT +"/QLNS_V1/Staffs/bonhiemChucVu.php";
 
-    public static String URL_ASSIGN_TASK = "http://" + IP + "/QLNS_V1/Jobs/addJob.php";
-    public static String URL_QUERY_TASK = "http://" + IP + "/QLNS_V1/Jobs/getJob.php";
-    public static String URL_UPDATE_TASK = "http://" + IP + "/QLNS_V1/Jobs/editJob.php";
-    public static String URL_DELETE_TASK = "http://" + IP + "/QLNS_V1/Jobs/delJob.php";
-    public static String URL_UPDATE_STATUS_TASK = "http://" + IP + "/QLNS_V1/Jobs/getStatus.php";
-    public static String URL_QUERY_ALL_TASK = "http://" + IP + "/QLNS_V1/Jobs/getJobRoom.php";
+    public static String URL_ASSIGN_TASK = "http://" + IP + PORT +"/QLNS_V1/Jobs/addJob.php";
+    public static String URL_QUERY_TASK = "http://" + IP + PORT +"/QLNS_V1/Jobs/getJob.php";
+    public static String URL_UPDATE_TASK = "http://" + IP + PORT +"/QLNS_V1/Jobs/editJob.php";
+    public static String URL_DELETE_TASK = "http://" + IP + PORT +"/QLNS_V1/Jobs/delJob.php";
+    public static String URL_UPDATE_STATUS_TASK = "http://" + IP + PORT +"/QLNS_V1/Jobs/getStatus.php";
+    public static String URL_QUERY_ALL_TASK = "http://" + IP + PORT +"/QLNS_V1/Jobs/getJobRoom.php";
 
-    public static String URL_CHECK_CHAMCONGNGAY = "http://" + IP + "/QLNS_V1/TimeRecorder/CheckNgayChamCong.php";
-    public static String URL_CHECKIN_CHAMCONG = "http://" + IP + "/QLNS_V1/TimeRecorder/addChechIn.php";
-    public static String URL_CHECHKOUT_CHAMCONG = "http://" + IP + "/QLNS_V1/TimeRecorder/addChechOut.php";
+    public static String URL_CHECK_CHAMCONGNGAY = "http://" + IP + PORT +"/QLNS_V1/TimeRecorder/CheckNgayChamCong.php";
+    public static String URL_CHECKIN_CHAMCONG = "http://" + IP + PORT +"/QLNS_V1/TimeRecorder/addChechIn.php";
+    public static String URL_CHECHKOUT_CHAMCONG = "http://" + IP + PORT +"/QLNS_V1/TimeRecorder/addChechOut.php";
 
-    public static String URL_ADD_TIME_RECORER = "http://" + IP + "/QLNS_V1/TimeRecorder/addTimeRecorder.php";
-    public static String URL_UPDATE_TIME_RECORER = "http://" + IP + "/QLNS_V1/TimeRecorder/editTimeRecorder.php";
-    public static String URL_GET_TIME_RECORER = "http://" + IP + "/QLNS_V1/TimeRecorder/getTimeRecorder.php";
+    public static String URL_ADD_TIME_RECORER = "http://" + IP + PORT +"/QLNS_V1/TimeRecorder/addTimeRecorder.php";
+    public static String URL_UPDATE_TIME_RECORER = "http://" + IP + PORT +"/QLNS_V1/TimeRecorder/editTimeRecorder.php";
+    public static String URL_GET_TIME_RECORER = "http://" + IP + PORT +"/QLNS_V1/TimeRecorder/getTimeRecorder.php";
 
-    public static String URL_GET_CHAM_CONG_NV = "http://" + IP + "/QLNS_V1/TimeRecorder/getChamCongNV.php";
+    public static String URL_GET_CHAM_CONG_NV = "http://" + IP + PORT +"/QLNS_V1/TimeRecorder/getChamCongNV.php";
 
-    public static String URL_GET_CHAM_CONG_USER = "http://" + IP + "/QLNS_V1/TimeRecorder/getChamCongUser.php";
-    public static String URL_GET_CHAM_CONG_NV_ALL = "http://" + IP + "/QLNS_V1/TimeRecorder/getChamCong.php";
-    public static String URL_SEARCH_CHAM_CONG = "http://" + IP + "/QLNS_V1/Search/searchChamCong.php";
+    public static String URL_GET_CHAM_CONG_USER = "http://" + IP + PORT +"/QLNS_V1/TimeRecorder/getChamCongUser.php";
+    public static String URL_GET_CHAM_CONG_NV_ALL = "http://" + IP + PORT +"/QLNS_V1/TimeRecorder/getChamCong.php";
+    public static String URL_SEARCH_CHAM_CONG = "http://" + IP + PORT +"/QLNS_V1/Search/searchChamCong.php";
 
-    public static String URL_SEARCH_CHAM_CONG_USER = "http://" + IP + "/QLNS_V1/Search/searchChamCongByUser.php";
+    public static String URL_SEARCH_CHAM_CONG_USER = "http://" + IP + PORT +"/QLNS_V1/Search/searchChamCongByUser.php";
 
     public static String TIME_ARRIVE = "08:00";
     public static String TIME_LEAVE = "17:00";
@@ -74,6 +75,10 @@ public class Injector {
             employee = new Employee();
         }
         return employee;
+    }
+
+    public static void clearEmployee() {
+        employee = null;
     }
 
     public static TimeKeeping getTimeKeeping() {

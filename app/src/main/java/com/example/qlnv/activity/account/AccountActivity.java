@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.qlnv.Injector;
 import com.example.qlnv.R;
+import com.example.qlnv.SharedPref;
 import com.example.qlnv.activity.HomeActivity;
 import com.example.qlnv.activity.LoginActivity;
 import com.example.qlnv.model.Employee;
@@ -57,6 +58,10 @@ public class AccountActivity extends AppCompatActivity implements View.OnClickLi
                 break;
             case R.id.btnLogOut:
                 startActivity(new Intent(AccountActivity.this,LoginActivity.class));
+                SharedPref sharedPref = SharedPref.getInstance();
+                sharedPref.clearSharedPref(AccountActivity.this);
+                Injector.clearEmployee();
+                finish();
                 break;
             case R.id.btnAbsent:
                 startActivity(new Intent(AccountActivity.this,AbsentActivity.class));

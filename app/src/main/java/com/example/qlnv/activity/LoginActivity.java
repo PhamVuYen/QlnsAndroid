@@ -15,6 +15,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.JWTVerifier;
+import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.example.qlnv.ConnectionAsync;
 import com.example.qlnv.Injector;
 import com.example.qlnv.R;
@@ -24,6 +28,8 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
@@ -32,16 +38,23 @@ import java.util.concurrent.ExecutionException;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     MaterialButton btnLogin;
     TextInputEditText edtTextUser, edtPassword;
+    SharedPref sharedPref;
 
     @Override
     protected void onStart() {
         super.onStart();
-        SharedPref sharedPref = SharedPref.getInstance();
-
-        if (sharedPref.getUser(this) != null) {
-            startActivity(new Intent(this, HomeActivity.class));
-            finish();
+        sharedPref = SharedPref.getInstance();
+        String token = sharedPref.getToken(LoginActivity.this);
+        if (!token.isEmpty()) {
+            Employee employee = getUserFromToken(token);
+            startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+        } else {
+            sharedPref.clearSharedPref(LoginActivity.this);
         }
+//        if (sharedPref.getUser(this) != null) {
+//            startActivity(new Intent(this, HomeActivity.class));
+//            finish();
+//        }
     }
 
     @Override
@@ -64,8 +77,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.btnLogin:
                 try {
                     if (new ConnectionAsync().execute().get()) {
-                        getData();
-                      //  getLogin();
+//                        getData();
+                        getLogin();
                     } else {
                         Toast.makeText(LoginActivity.this, "Check connection again ", Toast.LENGTH_LONG).show();
                     }
@@ -131,9 +144,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         HttpsTrustManager.allowAllSSL();
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Injector.URL_LOGIN, new Response.Listener<String>() {
             @Override
-            public void onResponse(String response) {
-               String token = response;
+            public void onResponse(String token) {
+                Log.d("token",token);
+                sharedPref = SharedPref.getInstance();
+                sharedPref.setToken(LoginActivity.this,token);
+                Employee employee = getUserFromToken(token);
+                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
 
+//               Log.d("token",response);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -153,4 +171,34 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         requestQueue.add(stringRequest);
     }
 
+    private boolean isTokenExpired(String token) {
+        DecodedJWT jwt = JWT.decode(token);
+        return  jwt.getExpiresAt().before(new Date());
+    }
+
+    public  Employee getUserFromToken(String token) {
+        if (token == null || token.trim().isEmpty()) {
+            return Injector.getEmployee();
+        }
+        try {
+            Algorithm algorithm = Algorithm.HMAC256("key");
+            JWTVerifier verifier = JWT.require(algorithm).build();
+            DecodedJWT jwt = verifier.verify(token);
+            Employee employee = Injector.getEmployee();
+            employee.setId(jwt.getClaim("MaNV").asString());
+            employee.setRole(jwt.getClaim("ChucVu").asString());
+            employee.setName(jwt.getClaim("TenNV").asString());
+            employee.setIdRoom(jwt.getClaim("MaPB").asString());
+            employee.setPhone(jwt.getClaim("Phone").asString());
+            employee.setMucluong(jwt.getClaim("MucLuong").asString());
+            employee.setStk(jwt.getClaim("SoTk").asString());
+            employee.setSex(jwt.getClaim("GioiTinh").asString().equals("Nam"));
+            employee.setIdentified(jwt.getClaim("SoCMND").asString());
+            return employee;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Injector.getEmployee();
+        }
+    }
 }

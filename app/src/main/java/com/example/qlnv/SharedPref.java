@@ -14,7 +14,7 @@ public class SharedPref {
     private static SharedPref instance = null;
 
     public static final String USER = "user";
-
+    public static final String TOKEN = "token";
 
     private static final String sharedPreferencesName = "kevinSharedPref";
 
@@ -28,6 +28,13 @@ public class SharedPref {
         return instance;
     }
 
+    public void setToken(Context context, String token) {
+        SharedPreferences pref = context.getSharedPreferences(sharedPreferencesName, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString(TOKEN,token);
+        editor.apply();
+    }
+
     public void setUser(Context context, Employee user){
         SharedPreferences pref = context.getSharedPreferences(sharedPreferencesName, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
@@ -35,6 +42,10 @@ public class SharedPref {
         editor.apply();
     }
 
+    public String getToken(Context context){
+        SharedPreferences pref = context.getSharedPreferences(sharedPreferencesName, Context.MODE_PRIVATE);
+        return pref.getString(TOKEN,"");
+    }
 
 
     public Employee getUser(Context context){

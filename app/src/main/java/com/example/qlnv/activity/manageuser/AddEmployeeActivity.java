@@ -136,6 +136,7 @@ public class AddEmployeeActivity extends AppCompatActivity implements DatePicker
         nv.setMucluong(edtLuong.getText()+"");
         nv.setStk(edtSTK.getText() +"");
         nv.setDateOfbirth(new Date());
+        nv.setPassword(edtCMND.getText());
         Log.d("NHANVIEN1",nv.toString());
         addUserToDB(nv);
     }
@@ -182,7 +183,7 @@ public class AddEmployeeActivity extends AppCompatActivity implements DatePicker
                 param.put("MaPB", nv.getIdRoom());
                 param.put("MucLuong", nv.getMucluong());
                 param.put("ChucVu","Nhân Viên");
-                param.put("Password","12345");
+                param.put("Password",nv.getPassword());
                 return param;
             }
         };

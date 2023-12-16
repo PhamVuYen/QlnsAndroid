@@ -19,8 +19,8 @@ import java.util.Date;
 public class Injector {
     public static Employee employee;
     public static TimeKeeping timeKeeping;
-    public static String IP = "192.168.1.13";
-    public static String PORT = ":8080";
+    public static String IP = "172.16.201.194";
+    public static String PORT = ":80";
     public static String URL_CONNECT_SERVER = "http://" + IP + PORT + "/QLNS_V1/Connect.php";
     public static String URL_USER = "http://" + IP + PORT + "/QLNS_V1/Staffs/getStaff.php";
 

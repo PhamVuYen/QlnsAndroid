@@ -1,11 +1,9 @@
 package com.example.qlnv;
 
 import android.util.Log;
-
 import com.example.qlnv.model.Employee;
 import com.example.qlnv.model.Room;
 import com.example.qlnv.model.TimeKeeping;
-
 import java.net.URL;
 import java.net.URLConnection;
 import java.text.DateFormat;

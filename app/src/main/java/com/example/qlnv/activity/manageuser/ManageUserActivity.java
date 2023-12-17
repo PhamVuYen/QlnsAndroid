@@ -44,6 +44,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.qlnv.Injector;
 import com.example.qlnv.R;
+import com.example.qlnv.SharedPref;
 import com.example.qlnv.activity.HomeActivity;
 import com.example.qlnv.activity.LoginActivity;
 import com.example.qlnv.adapter.RoomAdapter;
@@ -52,6 +53,7 @@ import com.example.qlnv.model.Employee;
 import com.example.qlnv.model.Room;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class ManageUserActivity extends Activity {
@@ -92,7 +94,7 @@ public class ManageUserActivity extends Activity {
             arrRoom.clear();
             adapterPb.notifyDataSetChanged();
         }
-        getDataRoom();
+        getDataRoomNew();
     }
 
     void getDataRoom() {
@@ -125,6 +127,59 @@ public class ManageUserActivity extends Activity {
         });
 
         requestQueue.add(jsonArrayRequest);
+    }
+
+    public void getDataRoomNew() {
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String token = SharedPref.getInstance().getToken(this);
+
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
+                Request.Method.POST,
+                Injector.URL_ROOM,
+                null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        // Parse the JSON array response
+                        try {
+                            for (int i = 0; i < response.length(); i++) {
+                                JSONObject jsonObject = response.getJSONObject(i);
+                                String maPB = jsonObject.getString("MaPB");
+                                String tenPB = jsonObject.getString("TenPB");
+                                Room room = new Room();
+                                room.setId(maPB);
+                                room.setName(tenPB);
+                                //room.dsnv
+                                arrRoom.add(room);
+                                getUserInRoom(room);
+                                // Handle the data as needed
+                                Log.d("API Response", "MaPB: " + maPB + ", TenPB: " + tenPB);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // Handle errors
+                        Log.e("API Error", "Connect Error: " + error.getMessage());
+                        Toast.makeText(ManageUserActivity.this, "Connect Error", Toast.LENGTH_LONG).show();
+                    }
+                }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                // Add headers to the request (in this case, the token)
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Content-Type", "application/json");
+                headers.put("Authorization", "Bearer " + token);
+                return headers;
+            }
+        };
+
+        // Add the request to the RequestQueue.
+        queue.add(jsonArrayRequest);
     }
 
 

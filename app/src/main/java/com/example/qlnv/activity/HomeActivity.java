@@ -32,6 +32,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.qlnv.Injector;
 import com.example.qlnv.Preference;
 import com.example.qlnv.R;
+import com.example.qlnv.SharedPref;
 import com.example.qlnv.activity.account.AccountActivity;
 import com.example.qlnv.activity.assigntask.AllTaskActivity;
 import com.example.qlnv.activity.assigntask.AssignTaskActivity;
@@ -48,6 +49,7 @@ import com.example.qlnv.model.Role;
 import com.example.qlnv.model.Room;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -84,9 +86,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         sharedPref = HomeActivity.this.getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putLong("mTime", System.currentTimeMillis()).apply();
-        getDataRoom();
-        getUserInRoom(employee.getIdRoom());
-
+//        getDataRoom();
+//        getUserInRoom(employee.getIdRoom());
     }
 
     @Override
@@ -154,7 +155,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 if (!employee.getRole().equals("ADMIN")) {
                     startActivity(new Intent(HomeActivity.this, TaskActivity.class));
                 } else {
-                    Toast.makeText(this,"You don't have permission",Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "You don't have permission", Toast.LENGTH_LONG).show();
                 }
 //                Intent intent = new Intent(HomeActivity.this, CalendarActivity.class);
 //                intent.putExtra("id", employee.getId());
@@ -176,10 +177,10 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 //                    Toast.makeText(HomeActivity.this, "You don't have permission", Toast.LENGTH_LONG).show();
 //                }
                 if (employee.getRole().equals("Trưởng phòng")) {
-                        Intent i = new Intent(HomeActivity.this, CalendarActivity.class);
-                        i.putExtra("id", employee.getId());
-                        i.putExtra("task", "ALL_TASK");
-                        startActivity(i);
+                    Intent i = new Intent(HomeActivity.this, CalendarActivity.class);
+                    i.putExtra("id", employee.getId());
+                    i.putExtra("task", "ALL_TASK");
+                    startActivity(i);
                 } else {
                     Toast.makeText(HomeActivity.this, "You don't have permission", Toast.LENGTH_LONG).show();
                 }
@@ -187,11 +188,11 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.summary:
                 if (Injector.getEmployee().getRole().equals("ADMIN")) {
                     Intent i = new Intent(HomeActivity.this, TimeKeepingDetailActivity.class);
-                    i.putExtra(EMPLOYEE,employee);
+                    i.putExtra(EMPLOYEE, employee);
                     startActivity(new Intent(HomeActivity.this, TimeKeepingDetailActivity.class));
                 } else {
                     Intent i = new Intent(HomeActivity.this, OverallActivity.class);
-                    i.putExtra(EMPLOYEE,employee);
+                    i.putExtra(EMPLOYEE, employee);
 //                    startActivity(new Intent(HomeActivity.this, TimeKeepingDetailActivity.class));
                     startActivity(i);
                 }
@@ -209,36 +210,53 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
     void getDataRoom() {
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Injector.URL_ROOM, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                if (response != null) {
-                    for (int i = 0; i < response.length(); i++) {
-                        try {
-                            JSONObject jsonObject = response.getJSONObject(i);
-                            String idRoom = jsonObject.getString("MaPB");
-                            String nameRoom = jsonObject.getString("TenPB");
-                            Room room = new Room();
-                            room.setId(idRoom);
-                            room.setName(nameRoom);
-                            //room.dsnv
-                            arrRoom.add(room);
-                        } catch (Exception e) {
-                            Toast.makeText(HomeActivity.this, "Some error", Toast.LENGTH_LONG).show();
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
+                Request.Method.POST,
+                Injector.URL_ROOM,
+                null,  // Pass null as the third parameter since you are not sending a JSON request body
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        if (response != null) {
+                            for (int i = 0; i < response.length(); i++) {
+                                try {
+                                    JSONObject jsonObject = response.getJSONObject(i);
+                                    String idRoom = jsonObject.getString("MaPB");
+                                    String nameRoom = jsonObject.getString("TenPB");
+                                    Room room = new Room();
+                                    room.setId(idRoom);
+                                    room.setName(nameRoom);
+                                    //room.dsnv
+                                    arrRoom.add(room);
+                                } catch (Exception e) {
+                                    Toast.makeText(HomeActivity.this, "Some error", Toast.LENGTH_LONG).show();
+                                }
+                            }
                         }
                     }
-                }
-            }
-        }, new Response.ErrorListener() {
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("errorToken", error + "");
+                        Toast.makeText(HomeActivity.this, error + " Can't connect server employee", Toast.LENGTH_LONG).show();
+                    }
+                }) {
+            @Nullable
             @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d("error", error + "");
-                Toast.makeText(HomeActivity.this, error + "Can't connect server employee", Toast.LENGTH_LONG).show();
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<>();
+                // headers.put("Content-Type", "application/json");
+                headers.put("Accept", "application/json");
+                String token = SharedPref.getInstance().getToken(HomeActivity.this);
+                headers.put("token", token);
+                return headers;
             }
-        });
+        };
 
         requestQueue.add(jsonArrayRequest);
     }
+
 
     private void getUserInRoom(String idroom) {
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());

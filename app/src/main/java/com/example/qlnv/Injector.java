@@ -19,7 +19,7 @@ import java.util.Date;
 public class Injector {
     public static Employee employee;
     public static TimeKeeping timeKeeping;
-    public static String IP = "172.16.201.194";
+    public static String IP = "192.168.2.102";
     public static String PORT = ":80";
     public static String URL_CONNECT_SERVER = "http://" + IP + PORT + "/QLNS_V1/Connect.php";
     public static String URL_USER = "http://" + IP + PORT + "/QLNS_V1/Staffs/getStaff.php";
@@ -29,7 +29,7 @@ public class Injector {
     public static String URL_ADD_USER = "http://" + IP + PORT +"/QLNS_V1/Staffs/addStaff.php";
     public static String URL_DEL_USER = "http://" + IP + PORT +"/QLNS_V1/Staffs/delStaff.php";
     public static String URL_EDIT_USER = "http://" + IP + PORT +"/QLNS_V1/Staffs/editStaff.php";
-    public static String URL_UPDATE_PASS = "http://" + IP + PORT +"/QLNS_V1/Staffs/updatePassword.php";
+    public static String URL_UPDATE_PASS = "http://" + IP + PORT +"/QLNS_V1/Login/updatePassword.php";
 
     public static String URL_UPDATE_CHANGE_ROOM =  "http://" + IP + PORT +"/QLNS_V1/Staffs/changeRoom.php";
 

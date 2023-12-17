@@ -21,6 +21,7 @@ import com.example.qlnv.Injector;
 import com.example.qlnv.R;
 import com.example.qlnv.activity.manageuser.EditEmployeeActivity;
 import com.example.qlnv.activity.manageuser.ManageUserActivity;
+import com.example.qlnv.encrypt.HashEncryption;
 import com.example.qlnv.model.Employee;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
@@ -97,7 +98,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String, String> param = new HashMap<>();
                 param.put("MaNV", nv.getId());
-                param.put("Password", nv.getPassword());
+                param.put("Password", HashEncryption.hashPassword(nv.getPassword()));
                 return param;
             }
         };

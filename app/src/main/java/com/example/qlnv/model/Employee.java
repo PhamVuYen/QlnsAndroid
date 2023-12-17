@@ -175,6 +175,6 @@ public class Employee  implements Serializable{
 
 	@Override
 	public String toString() {
-		return name + " - " + mucluong;
+		return name + " - " + password;
 	}
 }

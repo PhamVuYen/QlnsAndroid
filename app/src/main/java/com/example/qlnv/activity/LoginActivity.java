@@ -23,6 +23,7 @@ import com.example.qlnv.ConnectionAsync;
 import com.example.qlnv.Injector;
 import com.example.qlnv.R;
 import com.example.qlnv.SharedPref;
+import com.example.qlnv.encrypt.HashEncryption;
 import com.example.qlnv.model.Employee;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
@@ -150,8 +151,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 sharedPref.setToken(LoginActivity.this,token);
                 Employee employee = getUserFromToken(token);
                 startActivity(new Intent(LoginActivity.this, HomeActivity.class));
-
-//               Log.d("token",response);
+                employee.setPassword(edtPassword.getText().toString());
+             Log.d("edtPassword",edtPassword.getText().toString());
             }
         }, new Response.ErrorListener() {
             @Override
@@ -164,7 +165,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String, String> param = new HashMap<>();
                 param.put("MaNV",edtTextUser.getText().toString());
-                param.put("Password",edtPassword.getText().toString());
+                param.put("Password", HashEncryption.hashPassword(edtPassword.getText().toString()));
+                Log.d("hashPassword", HashEncryption.hashPassword(edtPassword.getText().toString()));
+               // param.put("Password", edtPassword.getText().toString());
                 return param;
             }
         };

@@ -28,6 +28,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.qlnv.Injector;
 import com.example.qlnv.R;
 import com.example.qlnv.activity.assigntask.AssignTaskActivity;
+import com.example.qlnv.encrypt.HashEncryption;
 import com.example.qlnv.model.Role;
 import com.example.qlnv.model.Employee;
 import com.example.qlnv.model.Room;
@@ -136,7 +137,7 @@ public class AddEmployeeActivity extends AppCompatActivity implements DatePicker
         nv.setMucluong(edtLuong.getText()+"");
         nv.setStk(edtSTK.getText() +"");
         nv.setDateOfbirth(new Date());
-        nv.setPassword(edtCMND.getText());
+        nv.setPassword(edtCMND.getText().toString());
         Log.d("NHANVIEN1",nv.toString());
         addUserToDB(nv);
     }
@@ -183,7 +184,7 @@ public class AddEmployeeActivity extends AppCompatActivity implements DatePicker
                 param.put("MaPB", nv.getIdRoom());
                 param.put("MucLuong", nv.getMucluong());
                 param.put("ChucVu","Nhân Viên");
-                param.put("Password",nv.getPassword());
+                param.put("Password",HashEncryption.hashPassword(nv.getPassword()));
                 return param;
             }
         };
